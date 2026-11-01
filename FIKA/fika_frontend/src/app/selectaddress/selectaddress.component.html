@@ -1,0 +1,36 @@
+
+    <!-- <app-navbar></app-navbar> -->
+
+
+<div class="container mt-4">
+  <h3>Select Address</h3>
+
+  <div *ngIf="addresses.length > 0; else noAddress">
+    <div *ngFor="let address of addresses" class="card mb-3 p-3">
+      <p><strong>Address:</strong> {{ address.address_line }}</p>
+      <p><strong>City:</strong> {{ address.city }}</p>
+      <p><strong>State:</strong> {{ address.state }}</p>
+      <p><strong>Postal Code:</strong> {{ address.postal_code }}</p>
+      <p><strong>Country:</strong> {{ address.country }}</p>
+
+      <button class="btn btn-primary" (click)="selectAddress(address)">Deliver to this address</button>
+    </div>
+  </div>
+
+  <ng-template #noAddress>
+    <p>No address found. Please add one.</p>
+  </ng-template>
+</div>
+
+
+<div class="container mt-4">
+  <h3>Add New Address</h3>
+</div>
+<form (ngSubmit)="submitAddress()">
+  <input type="text" [(ngModel)]="address.address_line" name="address_line" placeholder="Address" required />
+  <input type="text" [(ngModel)]="address.city" name="city" placeholder="City" required />
+  <input type="text" [(ngModel)]="address.state" name="state" placeholder="State" required />
+  <input type="text" [(ngModel)]="address.postal_code" name="postal_code" placeholder="Postal Code" required />
+  <input type="text" [(ngModel)]="address.country" name="country" placeholder="Country" required />
+  <button type="submit">Add Address</button>
+</form>

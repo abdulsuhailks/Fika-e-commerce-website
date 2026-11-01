@@ -1,0 +1,72 @@
+
+    <!-- navbar is rendered at app root -->
+
+<!-- Single Order Display -->
+<div *ngIf="orderData?.order && !orderData?.orders">
+     <div *ngIf="orderData.order.image">
+    <div class="d-flex justify-content-center mb-3">
+      <img [src]="'http://127.0.0.1:8000' +orderData.order.image"  height="400px" *ngIf="orderData.order.image" class="mb-3">
+    </div>
+  </div>
+  <p><strong>Order ID:</strong> {{ orderData.order.id }}</p>
+  <p><strong>Product ID:</strong> {{ orderData.order.product }}</p>
+  <p><strong>Product Name:</strong> {{ orderData.order.product_name }}</p>
+  <p><strong>Description:</strong> {{ orderData.order.description }}</p>
+  <p><strong>Quantity:</strong> {{ orderData.order.quantity }}</p>
+  <p><strong>Price per item:</strong> ₹{{ orderData.order.price }}</p>
+  <p><strong>Total Price:</strong> ₹{{ orderData.order.total_price }}</p>
+  <p><strong>Status:</strong> {{ orderData.order.status }}</p>
+  <p><strong>Order Date:</strong> {{ orderData.order.order_date | date: 'short' }}</p>
+
+ 
+
+  <h3>Shipping Address</h3>
+  <div *ngIf="orderData.order.shipping_address">
+    <p>{{ orderData.order.shipping_address.address_line }}</p>
+    <p>{{ orderData.order.shipping_address.city }}, {{ orderData.order.shipping_address.state }}</p>
+    <p>{{ orderData.order.shipping_address.postal_code }}</p>
+    <p>{{ orderData.order.shipping_address.country }}</p>
+  </div>
+</div>
+
+<!-- Bulk Orders Display -->
+<div *ngIf="orderData?.orders" class="container mt-4">
+  <h3>Your Orders (Bulk Purchase)</h3>
+  <div class="row mb-4 border p-4 rounded bg-info" *ngFor="let order of orderData.orders">
+    <div class="col-md-4" *ngIf="order.image">
+      <img
+        [src]="'http://127.0.0.1:8000' + order.image"
+        class="img-fluid"
+        alt="Product Image"
+      />
+    </div>
+
+    <div class="col-md-8">
+      <p><strong>Order ID:</strong> {{ order.id }}</p>
+      <p><strong>Product Name:</strong> {{ order.product_name }}</p>
+      <p><strong>Description:</strong> {{ order.description }}</p>
+      <p><strong>Quantity:</strong> {{ order.quantity }}</p>
+      <p><strong>Price per item:</strong> ₹{{ order.price }}</p>
+      <p><strong>Total Price:</strong> ₹{{ order.total_price }}</p>
+      <p><strong>Status:</strong> {{ order.status }}</p>
+    </div>
+  </div>
+
+  <h3>Shipping Address</h3>
+  <div *ngIf="orderData.orders[0]?.shipping_address" class="border p-3 rounded mb-4">
+    <p>{{ orderData.orders[0].shipping_address.address_line }}</p>
+    <p>{{ orderData.orders[0].shipping_address.city }}, {{ orderData.orders[0].shipping_address.state }}</p>
+    <p>{{ orderData.orders[0].shipping_address.postal_code }}</p>
+    <p>{{ orderData.orders[0].shipping_address.country }}</p>
+  </div>
+
+  <div class="border p-3 rounded mb-4 bg-light">
+    <h4>Order Summary</h4>
+    <p><strong>Total Items:</strong> {{ orderData.orders.length }}</p>
+    <p><strong>Combined Total:</strong> ₹{{ orderData.total_price }}</p>
+  </div>
+</div>
+
+<div *ngIf="(orderData?.order?.status === 'Pending') || (orderData?.orders && orderData.orders[0]?.status === 'Pending')" class="text-center mt-4">
+  <button class="btn btn-success btn-lg" (click)="payNow()">Pay Now</button>
+</div>

@@ -1,0 +1,93 @@
+<!-- <div class="container mt-4" *ngIf="cartItems.length > 0; else emptyCart">
+  <h4>Your Cart</h4>
+  
+
+
+  <div class="container mt-4">
+  <div class="row">
+    <div class="col-md-3" *ngFor="let item of cartItems">
+      <div class="card mb-4" (click)="viewProduct(item.product)">
+        <img [src]="'http://127.0.0.1:8000' + item.image" class="card-img-top" height="300px" alt="..." *ngIf="item.image">
+        <div class="card-body">
+          <h5 class="card-title">{{ item.name }}</h5>
+          <p class="card-text">{{ item.description }}</p>
+          <p class="card-text"><strong>Available Stock:</strong> {{ item.stock }}</p>
+          <p class="card-text"><strong>Size:</strong> {{ item.size }}</p>
+          <p class="card-text"><strong>selected Quantity</strong>{{item.quantity}}</p>
+          <p class="card-text"><strong>Price:</strong> ₹{{ item.price }}</p>
+          <p class="card-text"><strong>Total:</strong> ₹{{ item.price * item.quantity }}</p>
+          <button class="btn btn-warning mt-2" (click)="removeFromCart(item.id)">Remove from Cart</button> &nbsp;
+          <button class="btn btn-warning mt-2" (click)="buyNow(item.id)">Buy Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+  <div class="d-flex container-fluid ">Total Amount: ₹{{ totalPrice }}</div>
+            <button class="btn btn-warning " >Buy All Now</button>
+
+  
+
+
+</div>
+
+<ng-template #emptyCart>
+  <div class="text-center mt-5">
+    <h4>Your cart is empty</h4>
+  </div>
+</ng-template> -->
+
+
+<!-- Debug: show cart count (remove after debugging) -->
+<div class="container mt-2">
+  <p class="text-muted">Cart items count: {{ cartItems.length }}</p>
+</div>
+
+<div class="container mt-4" *ngIf="cartItems.length > 0">
+  <div class="container mt-4">
+  <h4>Your Cart</h4>
+
+  <div class="container mt-4">
+    <div class="row mb-4 border p-4 rounded bg-info" *ngFor="let item of cartItems">
+        <div class="col-md-4" (click)="viewProduct(item.product)">
+          <img
+            [src]="'http://127.0.0.1:8000' + item.image"
+            class="img-fluid"
+            alt="Product Image"
+            *ngIf="item.image"
+          />
+        </div>
+
+        <div class="col-md-8" (click)="viewProduct(item.product)">
+          <h4>{{ item.product_name }}</h4>
+          <p><strong>{{ item.description }}</strong></p>
+          <p><strong>Available Stock:</strong> {{ item.stock }}</p>
+          <p><strong>Size:</strong> {{ item.size }}</p>
+          <p>
+            <strong>Quantity:</strong>
+            <button class="btn btn-sm btn-outline-secondary me-1" (click)="$event.stopPropagation(); decrementQuantity(item)">-</button>
+            <span class="mx-2">{{ item.quantity }}</span>
+            <button class="btn btn-sm btn-outline-secondary ms-1" (click)="$event.stopPropagation(); incrementQuantity(item)">+</button>
+          </p>
+          <p><strong>Price:</strong> ₹{{ item.price }}</p>
+          <p><strong>Total:</strong> ₹{{ item.price * item.quantity }}</p>
+        </div>
+        <div class="col-md-8 d-flex justify-content-end">
+          <button class="btn btn-warning me-2" (click)="removeFromCart(item.id)">Remove from Cart</button>
+          <button class="btn btn-warning" (click)="buyNow(item)">Buy Now</button>
+        </div>
+    </div>
+  </div>
+
+  <div class="d-flex container-fluid justify-content-between mt-3">
+    <h5>Total Amount: ₹{{ totalPrice }}</h5>
+<button class="btn btn-warning" (click)="buyallNow(cartItems)">Buy All Now</button>
+  </div>
+</div>
+
+<div *ngIf="cartItems.length === 0" class="text-center mt-5">
+  <h4>Your cart is empty</h4>
+</div>

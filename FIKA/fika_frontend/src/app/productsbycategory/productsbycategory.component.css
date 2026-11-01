@@ -1,0 +1,16 @@
+    .ser{
+      
+      border: 3px solid; border-image: linear-gradient(to right, red, orange, yellow, green, blue) 1;
+    }
+
+    .ser:hover{
+      
+      border: 3px solid; border-image: linear-gradient(to left, red, orange, yellow, green, blue) 1;
+    }
+
+
+    .card {
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: 2px solid; 
+      border-image: linear-gradient(to left, red, orange, yellow, green, blue) 1;
+    }

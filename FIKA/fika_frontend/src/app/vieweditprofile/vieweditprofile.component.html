@@ -1,0 +1,42 @@
+
+<div class="container mt-4">
+  <h2>Edit Profile</h2>
+  <form (ngSubmit)="onSubmit()">
+    <label for="username"> Username : </label>
+    <input [(ngModel)]="userprofile.username" name="username" placeholder="username" class="form-control mt-2 ent" required>
+    <label for="first_name"> First Name : </label>
+    <input [(ngModel)]="userprofile.first_name" name="first_name" placeholder="firstname" class="form-control mt-2 ent" required>
+    <label for="last_name"> Last Name : </label>
+    <input [(ngModel)]="userprofile.last_name" name="last_name" placeholder="lastname" class="form-control mt-2 ent" required>
+    <label for="email"> Email : </label>
+    <input  [(ngModel)]="userprofile.email" name="email" placeholder="email" class="form-control mt-2 ent" required>
+    <label for="phone_number"> Phone Number : </label>
+    <input type="number" [(ngModel)]="userprofile.phone_number" name="phone_number" placeholder="phone_number" class="form-control mt-2 ent" required>
+    <label for="gender"> Gender : </label>
+    <input [(ngModel)]="userprofile.gender" name="gender" placeholder="gender" class="form-control mt-2 ent">
+    
+        <button type="submit" class="btn btn-success mt-3">Update User Profile</button>
+    <button type="button" class="btn btn-secondary mt-3 ms-2" (click)="cancel()">Cancel</button>
+  </form>
+</div>
+
+    <div class="container mt-4">
+  <h3>Your Address</h3>
+
+  <div *ngIf="addresses.length > 0; else noAddress">
+    <div *ngFor="let address of addresses" class="card mb-3 p-3">
+      <p><strong>Address:</strong> {{ address.address_line }}</p>
+      <p><strong>City:</strong> {{ address.city }}</p>
+      <p><strong>State:</strong> {{ address.state }}</p>
+      <p><strong>Postal Code:</strong> {{ address.postal_code }}</p>
+      <p><strong>Country:</strong> {{ address.country }}</p>
+      <button class="btn btn-secondary ms-2 mt-3" (click)="detele_address(address.id)" >Delete address</button>
+    </div>
+  </div>
+
+  <ng-template #noAddress>
+    <p>No address found. Please add one.</p>
+  </ng-template>
+</div>
+
+

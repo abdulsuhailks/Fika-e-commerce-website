@@ -1,0 +1,27 @@
+<div class="d-flex justify-content-center">
+  <h1 class="mt-2">Add Product</h1>
+</div>
+
+<div class="d-flex justify-content-center">
+  <form #productForm="ngForm" (ngSubmit)="onSubmit(productForm.value)">
+    <input type="text" name="name" placeholder="Product Name" class="form-control custom-width mt-2" ngModel required>
+
+    <input type="text" name="category" placeholder="Category" class="form-control custom-width mt-2" ngModel required>
+
+    <input type="text" name="product_id_no" placeholder="product_id_no" class="form-control custom-width mt-2" ngModel required>
+
+    <textarea name="description" placeholder="Description" class="form-control custom-width mt-2" ngModel required></textarea>
+
+    <input type="number" name="price" placeholder="Price" class="form-control custom-width mt-2" ngModel required>
+
+    <input type="number" name="stock" placeholder="Stock" class="form-control custom-width mt-2" ngModel required>
+
+    <input type="text" name="size" placeholder="Size" class="form-control custom-width mt-2" ngModel>
+
+    <input type="file" name="image" #fileInput (change)="onFileChange($event)" class="form-control custom-width mt-2" accept="image/*">
+
+    <div class="d-grid gap-2">
+      <input type="submit" value="Add Product" class="btn btn-primary mt-2">
+    </div>
+  </form>
+</div>

@@ -1,0 +1,20 @@
+<h2>Your Orders</h2>
+
+<div *ngIf="orders.length > 0; else noOrders">
+  <div *ngFor="let order of orders" class="order-card">
+    <img [src]="'http://127.0.0.1:8000' + order.image" alt="Product Image" width="100">
+    <p><strong>Product:</strong> {{ order.product_name }}</p>
+    <p><strong>Description:</strong> {{ order.description }}</p>
+    <p><strong>Quantity:</strong> {{ order.quantity }}</p>
+    <p><strong>Total Price:</strong> ₹{{ order.total_price }}</p>
+    <p><strong>Address:</strong> {{ order.shipping_address.address_line }}, {{ order.shipping_address.city }}, {{ order.shipping_address.state }}, {{ order.shipping_address.postal_code }}, {{ order.shipping_address.country }}</p>
+    <p><strong>Status:</strong> {{ order.status }}</p>
+    <button class="btn btn-danger" *ngIf="order.status !== 'Cancelled'" (click)="cancel_order(order.id)"> Cancel Order </button>
+    <button class="btn btn-warning" *ngIf="order.status == 'Pending'" (click)="paynow(order)"> Paynow </button>
+    <hr>
+  </div>
+</div>
+
+<ng-template #noOrders>
+  <p>No orders found.</p>
+</ng-template>

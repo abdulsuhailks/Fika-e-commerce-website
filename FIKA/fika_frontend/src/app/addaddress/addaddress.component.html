@@ -1,0 +1,21 @@
+<form (ngSubmit)="submitAddress()" class="container mt-4" style="max-width: 400px;">
+  <!-- navbar is rendered at app root -->
+
+  <form (ngSubmit)="submitAddress()" class="container mt-4" style="max-width: 400px;">
+  <div class="mb-3">
+    <input type="text" class="form-control" [(ngModel)]="address.address_line" name="address_line" placeholder="Address" required />
+  </div>
+  <div class="mb-3">
+    <input type="text" class="form-control" [(ngModel)]="address.city" name="city" placeholder="City" required />
+  </div>
+  <div class="mb-3">
+    <input type="text" class="form-control" [(ngModel)]="address.state" name="state" placeholder="State" required />
+  </div>
+  <div class="mb-3">
+    <input type="text" class="form-control" [(ngModel)]="address.postal_code" name="postal_code" placeholder="Postal Code" required />
+  </div>
+  <div class="mb-3">
+    <input type="text" class="form-control" [(ngModel)]="address.country" name="country" placeholder="Country" required />
+  </div>
+  <button type="submit" class="btn btn-primary w-100">Add Address</button>
+</form>

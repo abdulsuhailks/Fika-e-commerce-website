@@ -1,0 +1,16 @@
+<div class="container mt-4">
+  <h2>Edit Product</h2>
+  <form (ngSubmit)="onSubmit()">
+    <input [(ngModel)]="product.name" name="name" placeholder="Product Name" class="form-control mt-2" required>
+    <input [(ngModel)]="product.category" name="category" placeholder="Category" class="form-control mt-2" required>
+    <textarea [(ngModel)]="product.description" name="description" placeholder="Description" class="form-control mt-2" required></textarea>
+    <input type="number" [(ngModel)]="product.price" name="price" placeholder="Price" class="form-control mt-2" required>
+    <input type="number" [(ngModel)]="product.stock" name="stock" placeholder="Stock" class="form-control mt-2" required>
+    <input [(ngModel)]="product.size" name="size" placeholder="Size" class="form-control mt-2">
+    
+    <!-- Optional image preview or update logic -->
+
+    <button type="submit" class="btn btn-success mt-3">Update Product</button>
+    <button type="button" class="btn btn-secondary mt-3 ms-2" (click)="cancel()">Cancel</button>
+  </form>
+</div>
