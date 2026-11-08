@@ -1,36 +1,38 @@
-
-    <!-- <app-navbar></app-navbar> -->
-
-
-<div class="container mt-4">
-  <h3>Select Address</h3>
-
-  <div *ngIf="addresses.length > 0; else noAddress">
-    <div *ngFor="let address of addresses" class="card mb-3 p-3">
-      <p><strong>Address:</strong> {{ address.address_line }}</p>
-      <p><strong>City:</strong> {{ address.city }}</p>
-      <p><strong>State:</strong> {{ address.state }}</p>
-      <p><strong>Postal Code:</strong> {{ address.postal_code }}</p>
-      <p><strong>Country:</strong> {{ address.country }}</p>
-
-      <button class="btn btn-primary" (click)="selectAddress(address)">Deliver to this address</button>
-    </div>
+<main class="address-page">
+  <div class="mb-4">
+    <p class="text-uppercase text-muted mb-1">Checkout</p>
+    <h2 class="fw-bold">Select delivery address</h2>
   </div>
 
-  <ng-template #noAddress>
-    <p>No address found. Please add one.</p>
-  </ng-template>
-</div>
+  <div class="address-layout">
+    <section>
+      <h5 class="fw-bold mb-3">Saved addresses</h5>
+      <div *ngIf="addresses.length > 0; else noAddress">
+        <article *ngFor="let address of addresses" class="address-card">
+          <p><strong>{{ address.address_line }}</strong></p>
+          <p>{{ address.city }}, {{ address.state }} {{ address.postal_code }}</p>
+          <p>{{ address.country }}</p>
+          <button class="btn mt-2" type="button" (click)="selectAddress(address)">Deliver to this address</button>
+        </article>
+      </div>
+      <ng-template #noAddress>
+        <div class="address-card">
+          <p class="mb-1 fw-bold">No saved address</p>
+          <p class="text-secondary mb-0">Add an address using the form.</p>
+        </div>
+      </ng-template>
+    </section>
 
-
-<div class="container mt-4">
-  <h3>Add New Address</h3>
-</div>
-<form (ngSubmit)="submitAddress()">
-  <input type="text" [(ngModel)]="address.address_line" name="address_line" placeholder="Address" required />
-  <input type="text" [(ngModel)]="address.city" name="city" placeholder="City" required />
-  <input type="text" [(ngModel)]="address.state" name="state" placeholder="State" required />
-  <input type="text" [(ngModel)]="address.postal_code" name="postal_code" placeholder="Postal Code" required />
-  <input type="text" [(ngModel)]="address.country" name="country" placeholder="Country" required />
-  <button type="submit">Add Address</button>
-</form>
+    <aside class="address-form-card">
+      <h5 class="fw-bold mb-3">Add new address</h5>
+      <form (ngSubmit)="submitAddress()">
+        <input type="text" [(ngModel)]="address.address_line" name="address_line" class="form-control" placeholder="Address" required>
+        <input type="text" [(ngModel)]="address.city" name="city" class="form-control" placeholder="City" required>
+        <input type="text" [(ngModel)]="address.state" name="state" class="form-control" placeholder="State" required>
+        <input type="text" [(ngModel)]="address.postal_code" name="postal_code" class="form-control" placeholder="Postal code" required>
+        <input type="text" [(ngModel)]="address.country" name="country" class="form-control" placeholder="Country" required>
+        <button type="submit">Add address</button>
+      </form>
+    </aside>
+  </div>
+</main>

@@ -1,26 +1,22 @@
-
-
-
-    <!-- <app-navbar></app-navbar> -->
-
-  <div *ngIf="Product" class=" p-4 border rounded bg-light ">
+<main class="product-page">
+  <section *ngIf="Product" class="product-detail">
     <div class="d-flex justify-content-center mb-3">
-      <img [src]="'http://127.0.0.1:8000' + Product.image" class="justify-content-center" height="400px" *ngIf="Product.image" class="mb-3">
+      <img [src]="'http://127.0.0.1:8000' + Product.image" alt="{{ Product.name }}" *ngIf="Product.image">
     </div>
-    <h4>{{ Product.name }}</h4>
-    <p><strong>Description:</strong> {{ Product.description }}</p>
-    <p><strong>Price:</strong> ₹{{ Product.price }}</p>
-    <p><strong>Stock:</strong> {{ Product.stock }}</p>
-    <p><strong>Size:</strong> {{ Product.size }}</p>
-
-    <div class="mb-2">
-  <label for="qty">Quantity:</label>
-  <input type="number" min="1" [(ngModel)]="quantity" class="form-control w-25" />
-</div>
-
-
-    <button class="btn btn-warning" (click)="addtocart(Product)" ><strong>Add to Cart</strong></button> &nbsp;
-    <button class="btn btn-warning justify-content-end" (click)="buyNow(Product)" ><strong>Buy now</strong></button>
-
-
-  </div>
+    <div class="product-detail-info">
+      <p class="text-uppercase text-muted mb-2">{{ Product.category }}</p>
+      <h2>{{ Product.name }}</h2>
+      <p class="mt-3 text-secondary">{{ Product.description }}</p>
+      <p class="price mt-4 mb-2">₹{{ Product.price }}</p>
+      <p><strong>Stock:</strong> {{ Product.stock }} &nbsp;&nbsp; <strong>Size:</strong> {{ Product.size }}</p>
+      <div class="mb-3">
+        <label for="qty" class="form-label fw-bold">Quantity</label>
+        <input id="qty" type="number" min="1" [(ngModel)]="quantity" class="form-control" style="max-width:120px">
+      </div>
+      <div class="d-flex gap-2 mt-4">
+        <button class="btn btn-warning flex-fill" type="button" (click)="addtocart(Product)">Add to Cart</button>
+        <button class="btn btn-warning flex-fill" type="button" (click)="buyNow(Product)">Buy now</button>
+      </div>
+    </div>
+  </section>
+</main>

@@ -43,6 +43,14 @@ export class NavbarComponent {
   }
 
   isSidebarOpen = false;
+  searchQuery = '';
+
+  search() {
+    const query = this.searchQuery.trim();
+    if (query) {
+      this.router.navigate(['/search'], { queryParams: { query } });
+    }
+  }
 
   toggleSidebar() {
     this.isSidebarOpen = !this.isSidebarOpen;

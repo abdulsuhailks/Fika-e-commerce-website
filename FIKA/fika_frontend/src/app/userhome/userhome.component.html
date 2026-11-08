@@ -1,34 +1,27 @@
+<main class="page-shell">
+  <section class="store-hero">
+    <h1>Style made for everyday.</h1>
+    <p>Thoughtfully selected pieces, made to feel unmistakably yours.</p>
+    <form class="store-search" role="search" (ngSubmit)="search()">
+      <input type="search" [(ngModel)]="searchQuery" name="search" placeholder="Search the collection" aria-label="Search products">
+      <button type="submit">Search</button>
+    </form>
+  </section>
 
-<!-- navbar is rendered at app root -->
-
-
-<!-- <div [ngClass]="{'sidebar-open': isSidebarOpen, 'sidebar-closed': !isSidebarOpen}" class="sidebar bg-dark text-white p-3">
-  <ul class="list-unstyled">
-    <li><button class="text-white btn btn-link" (click)="viewProfile()">Profile</button></li>
-    <li><button class="text-white btn btn-link" (click)="addaddress()">Add Address</button></li>
-    <li><button class="text-white btn btn-link" (click)="viewcart()">Cart</button></li>
-    <li><button class="text-white btn btn-link" (click)="orders()" >Orders</button></li>
-    <li><button class="text-white btn btn-link" (click)="Logout()" >Logout</button></li>
-  </ul>
-</div> -->
-
-
-
-
-
-<div class="container-fluid mt-4">
-    <div class="row justify-content-center container-fluid">
-      <div class="col-md-3 " *ngFor="let product of products">
-        <div class="card mb-4" (click)="viewCategory(product.category)" style="cursor: pointer;">
-          <img [src]="'http://127.0.0.1:8000' + product.image" class="card-img-top" height="300px" alt="..." *ngIf="product.image">
-          <div class="card-body">
-            <h5 class="card-title">{{ product.category }}</h5>
-            <!-- <p class="card-text">{{ product.name }}</p> -->
-          </div>
-        </div>
-      </div>
+  <section class="content-wrap">
+    <div class="section-heading">
+      <h2>Shop by category</h2>
     </div>
-  </div>
+    <div class="category-grid">
+      <article class="card" *ngFor="let product of products" (click)="viewCategory(product.category)" style="cursor:pointer">
+        <img [src]="'http://127.0.0.1:8000' + product.image" class="card-img-top" alt="{{ product.category }}" *ngIf="product.image">
+        <div class="card-body">
+          <h5 class="card-title mb-0">{{ product.category }}</h5>
+        </div>
+      </article>
+    </div>
+  </section>
+</main>
 
 
 

@@ -41,17 +41,14 @@
 </ng-template> -->
 
 
-<!-- Debug: show cart count (remove after debugging) -->
-<div class="container mt-2">
-  <p class="text-muted">Cart items count: {{ cartItems.length }}</p>
-</div>
+<main class="cart-page" *ngIf="cartItems.length > 0">
+  <div class="mb-4">
+    <p class="text-uppercase text-muted mb-1">Your selection</p>
+    <h3>Shopping Cart</h3>
+  </div>
 
-<div class="container mt-4" *ngIf="cartItems.length > 0">
-  <div class="container mt-4">
-  <h4>Your Cart</h4>
-
-  <div class="container mt-4">
-    <div class="row mb-4 border p-4 rounded bg-info" *ngFor="let item of cartItems">
+  <div class="container-fluid px-0">
+    <div class="row mb-4 cart-item" *ngFor="let item of cartItems">
         <div class="col-md-4" (click)="viewProduct(item.product)">
           <img
             [src]="'http://127.0.0.1:8000' + item.image"
@@ -82,12 +79,13 @@
     </div>
   </div>
 
-  <div class="d-flex container-fluid justify-content-between mt-3">
+  <div class="cart-summary d-flex justify-content-between align-items-center">
     <h5>Total Amount: ₹{{ totalPrice }}</h5>
-<button class="btn btn-warning" (click)="buyallNow(cartItems)">Buy All Now</button>
+    <button class="btn btn-warning" type="button" (click)="buyallNow(cartItems)">Buy All Now</button>
   </div>
-</div>
+</main>
 
-<div *ngIf="cartItems.length === 0" class="text-center mt-5">
+<div *ngIf="cartItems.length === 0" class="text-center cart-page">
   <h4>Your cart is empty</h4>
+  <p class="text-secondary">Explore the collection and add something you love.</p>
 </div>
